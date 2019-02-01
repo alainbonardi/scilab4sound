@@ -1,3 +1,7 @@
+//Converts a wave audio file to a text file with 10 sample values per line//
+//Alain Bonardi//
+//2019//
+
 //Wav file selection//
 cheminFichier = uigetfile("*.wav");
 

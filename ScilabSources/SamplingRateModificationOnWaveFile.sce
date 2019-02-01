@@ -1,17 +1,14 @@
-//choix d'un fichier WAVE que l'on ouvre//
-//filtre sur le choix de fichier//
+//Modifies the sampling rate of a file//
+//(number of bits remains the same)
+//Alain Bonardi//
+//2019//
+
 cheminFichier1 = uigetfile("*.wav");
-//on ouvre un fichier wav et on récupère ses échantillons (s), sa fréquence
-//d'échantillonnage (fs) et son nombre de bits (16)
 [s1, fs1, b1] = wavread(cheminFichier1);
-//s est une matrice à 1 ligne et N colonnes correspondant aux N échantillons du fichier//
-//size donne les 2 informations de taille d'une matrice :
-//nombre de lignes, nombre de colonnes//
-//le résultat de size est lui meme est une matrice à 1 ligne et 2 colonnes//
 Ntotal1 = size(s1);
-Nech1 = Ntotal1(1,2);//on récupère la 2ème information qui est le nombre d'échantillons//
+Nech1 = Ntotal1(1,2);//this is the original number of samples//
 messagebox("Original SR="+string(fs1)+"; Number of samples="+string(Nech1), "Original file");
-//on joue le fichier à sa fréquence d'échantillonnage//
+//the file is played at its original sampling rate/
 playsnd(s1, fs1);
 titre = 'New SR';
 labels = ["SR"];
@@ -21,7 +18,7 @@ defaultValueList = ["48000"];
 Nech2 = floor(Nech1 * fs2 / fs1);
 messagebox("New SR="+string(fs2)+"; Number of samples="+string(Nech2), "Original file");
 s2 = zeros(1, Nech2);
-titre = 'Type of interpolation 1->lin 2->cos 3->cub';
+titre = 'Type of interpolation 1->lin | 2->cos | 3->cub';
 labels = ["type"];
 typeList = list("vec", 1);
 defaultValueList = ["2"];
@@ -50,7 +47,6 @@ for i=1:Nech2
         a2 = y2 - y0;
         a3 = y1;
         s2(1, i) = a0 * k * mu2 + a1 * mu2 + a2 * k + a3;
-    //printf("i1=%f, i2=%f, k=%f\n", i1, i2, k)
     end
 end
 cheminFichier2 = uiputfile("*.wav");
