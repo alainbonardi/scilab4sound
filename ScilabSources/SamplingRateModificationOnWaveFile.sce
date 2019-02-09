@@ -26,7 +26,7 @@ defaultValueList = ["48000"];
 [ok, fs2]=getvalue(titre, labels, typeList, defaultValueList);
 Nech2 = floor(Nech1 * fs2 / fs1);
 messagebox("New SR="+string(fs2)+"; Number of samples="+string(Nech2), "Original file");
-s2 = zeros(1, Nech2);
+s2 = zeros(Ntracks1, Nech2);
 titre = 'Type of interpolation 1->lin | 2->cos | 3->cub';
 labels = ["type"];
 typeList = list("vec", 1);
