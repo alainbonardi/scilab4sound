@@ -10,8 +10,15 @@ Ntotal1 = size(s1);
 Nech1 = Ntotal1(1,2);//this is the original number of samples//
 Ntracks1 = Ntotal1(1, 1); //this is the original number of tracks// 
 messagebox("Original SR="+string(fs1)+"; Number of samples="+string(Nech1)+"; Number of tracks="+string(Ntracks1), "Original file");
-//the file is played at its original sampling rate/
-playsnd(s1, fs1);
+//if asked the file is played at its original sampling rate/
+titre = 'Play original file';
+labels = ["play (0/1)?"];
+typeList = list("vec", 1);
+defaultValueList = ["0"];
+[ok, playOrNot] = getvalue(titre, labels, typeList, defaultValueList);
+if (playOrNot == 1) then
+    playsnd(s1, fs1);
+end
 titre = 'New SR';
 labels = ["SR"];
 typeList = list("vec", 1);
